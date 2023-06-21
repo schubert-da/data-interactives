@@ -10,7 +10,7 @@
 	
   let value;
   const steps = [
-		"<p>Early on the elite unit tasked with the job of finding elusive individual known as Waldo.</p>",
+		"<h3 style='font-size: 3rem; font-family: sans-serif; border-bottom: 1px solid #222; margin: 0''>Finding Waldo</h3> <p>Early on the elite unit tasked with the job of finding elusive individual known as Waldo.</p>",
     "<p>Intel (not the company) said that he was in a compound at the bottom of the page.</p>",
     "<p>However a raid of the property turned up empty. The commander was certain though, that Waldo was surely nearby.</p>",
     "<p>The search perimeter was expanded as units were deployed to search nearby buildings. <br> They had no luck in the first building.</p>",
@@ -71,6 +71,7 @@
   }
 
   .step-content {
+    font-family: comic sans ms;
     font-size: 1rem;
     background: whitesmoke;
     color: #ccc;
@@ -89,7 +90,7 @@
 
 	.step.active .step-content {
 		background: white;
-		color: black;
+		color: #222;
 	}
 	
   .steps-container,

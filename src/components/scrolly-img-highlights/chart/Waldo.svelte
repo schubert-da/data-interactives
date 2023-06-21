@@ -30,7 +30,7 @@
       let element = document.getElementById(id);
 
       if(index > 4){
-        var delay = index * 0.2;
+        var delay = (index-4) * 0.3;
         element.style.transitionDelay = delay + 's';
       }
     });
