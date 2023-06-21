@@ -1,16 +1,17 @@
 <script>
-	/* By Connor Rothschild https://twitter.com/CL_Rothschild
-	Scrollytelling component from Russell Goldenberg https://twitter.com/codenberg/status/1432774653139984387 */
+	/* 
+  Starter code by Connor Rothschild https://twitter.com/CL_Rothschild
+	Scrollytelling component from Russell Goldenberg https://twitter.com/codenberg/status/1432774653139984387 
+  Where's waldo implementation by Schubert de Abreu https://twitter.com/schubertda1
+  */
 	
   import Scrolly from "../../shared/Scrolly.svelte";
-  import Scatterplot from "./chart/Scatterplot.svelte";
-
   import Waldo from "./chart/Waldo.svelte";
 	
   let value;
   const steps = [
 		"<p>Early on the elite unit tasked with the job of finding elusive individual known as Waldo.</p>",
-    "<p>Intel(not the company) said that he was in a compound at the bottom of the page.</p>",
+    "<p>Intel (not the company) said that he was in a compound at the bottom of the page.</p>",
     "<p>However a raid of the property turned up empty. The commander was certain though, that Waldo was surely nearby.</p>",
     "<p>The search perimeter was expanded as units were deployed to search nearby buildings. <br> They had no luck in the first building.</p>",
     "<p>On reaching the third house, the task force caught a break - a man wearing a red-and-white-striped shirt, bobble hat, round glasses and blue jeans told them that Waldo was not too far ahead.</p>",
@@ -48,14 +49,14 @@
 
   .sticky {
     position: sticky;
-    top: 10%;
+    top: 5%;
 		flex: 1 1 60%;
     width: 100%;
 		margin: auto;
   }
 
   .section-container {
-    margin-top: 1em;
+    margin-top: 0em;
     text-align: center;
     transition: background 100ms;
     display: flex;
