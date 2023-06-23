@@ -10,11 +10,11 @@
 	
   let value;
   const steps = [
-		"<h3 style='font-size: 3rem; font-family: sans-serif; border-bottom: 1px solid #222; margin: 0''>Finding Waldo</h3> <p>Early on the elite unit tasked with the job of finding elusive individual known as Waldo.</p>",
+		"<h3 style='font-size: 3rem; font-family: sans-serif; border-bottom: 1px solid #222; margin: 0''>Finding Waldo</h3> <p>The elite task force had been on the tail of the elusive Waldo for months unitl their efforts led them to this page.</p>",
     "<p>Intel (not the company) said that he was in a compound at the bottom of the page.</p>",
-    "<p>However a raid of the property turned up empty. The commander was certain though, that Waldo was surely nearby.</p>",
-    "<p>The search perimeter was expanded as units were deployed to search nearby buildings. <br> They had no luck in the first building.</p>",
-    "<p>On reaching the third house, the task force caught a break - a man wearing a red-and-white-striped shirt, bobble hat, round glasses and blue jeans told them that Waldo was not too far ahead.</p>",
+    "<p>When the first location turned up empty, they started a sweep of the surrounding buildings.</p>",
+    "<p>The houses across the street showed no promise and it seemed like the evasive explorer had once again slipped through their fingers.</p>",
+    "<p>On reaching the fourth house, the task force caught a break - a man wearing a <i>red-and-white-striped shirt, bobble hat, round glasses and blue jeans</i> told them that Waldo was not too far ahead.</p>",
     "<p>The search continues...</p>",
     ];
 </script>
@@ -84,11 +84,15 @@
 		width: 70%;
 		margin: auto;
 		max-width: 500px;
+
+    opacity: 0;
+    transition: opacity 1s ease-out;
   }
 
 	.step.active .step-content {
 		background: white;
 		color: #222;
+    opacity: 1;
 	}
 	
   .steps-container,
