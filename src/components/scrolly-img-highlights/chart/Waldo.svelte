@@ -5,7 +5,7 @@
   export let step;
 
   let image;
-  let elementClassList = [
+  let elementClassList = [ // list of ids of highlighted areas in order.
     "house-1",
     "house-2",
     "house-3",
@@ -23,15 +23,18 @@
     "balloon-2",
     "balloon-3",
   ];
-  let annotationList = [
+  let annotationList = [ // id of annotations
     "annotation",
     "annotation-2",
     "annotation-3"
   ]
 
   onMount(() => {
+    // assign image only after component mounts
     image = document.getElementById("background-image");
 
+    // add an increasing delay for each highlighted area after the 
+    // 6th element so that they show one after the other
     elementClassList.forEach(function (id, index) {
       let element = document.getElementById(id);
 
@@ -42,6 +45,9 @@
     });
   });
 
+  // Set the elements opacity as 1 in case of for all elements
+  // up till and including 'lastElement'.
+  // 'annotIndex' is the index of the annotation to be showed. -1 if none 
   function setStyling(lastElement, annotIndex=null) {
     let lastElementIndex = elementClassList.indexOf(lastElement);
 
@@ -66,8 +72,6 @@
       for (let i = 0; i < annotationList.length; i++) {
         let element = document.getElementById(annotationList[i]);
         let opacity = element.style.opacity;
-        
-        console.log(annotIndex + " - " + i);
 
         if (i === annotIndex && opacity === "0") {
           element.style.opacity = "1";
@@ -79,21 +83,23 @@
     }
   }
 
+  // Update the graphic according to step number.
   $: {
     if (step == 0) {
+      // dim background
       image.style.filter = "brightness(1.0)";
-      setStyling("null");
+      setStyling("null", -1);
     } else if (step == 1) {
       image.style.filter = "brightness(0.35)";
-      setStyling("house-1",0);
+      setStyling("house-1", 0);
     } else if (step == 2) {
-      setStyling("house-2",1);
+      setStyling("house-2", 1);
     } else if (step == 3) {
       setStyling("house-3");
     } else if (step == 4) {
-      setStyling("house-4",2);
+      setStyling("house-4", 2);
     } else if (step == 5) {
-      setStyling("balloon-3",-1);
+      setStyling("balloon-3", -1);
     }
   }
 </script>

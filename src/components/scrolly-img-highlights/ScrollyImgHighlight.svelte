@@ -2,7 +2,7 @@
 	/* 
   Starter code by Connor Rothschild https://twitter.com/CL_Rothschild
 	Scrollytelling component from Russell Goldenberg https://twitter.com/codenberg/status/1432774653139984387 
-  Where's waldo implementation by Schubert de Abreu https://twitter.com/schubertda1
+  'Where's Waldo' implementation by Schubert de Abreu https://twitter.com/schubertda1
   */
 	
   import Scrolly from "../../shared/Scrolly.svelte";
@@ -31,7 +31,6 @@
       </Scrolly>
     </div>
     <div class="sticky">
-      
       <Waldo step={value} ></Waldo>
     </div>
   </div>
