@@ -33,7 +33,6 @@
     <div class="sticky">
       
       <Waldo step={value} ></Waldo>
-      <!-- <Scatterplot step={value} /> -->
     </div>
   </div>
 </section>

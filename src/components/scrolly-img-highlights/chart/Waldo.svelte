@@ -1,49 +1,55 @@
 <script>
   import { onMount } from "svelte";
-  import Image from "./../assets/image.svelte"  
+  import Image from "./../assets/image.svelte";
 
   export let step;
 
   let image;
   let elementClassList = [
-      "house-1",
-      "annotation",
-      "house-2",
-      "house-3",
-      "house-4",
-      "house-5",
-      "house-6",
-      "house-7",
-      "house-8",
-      "house-9",
-      "house-10",
-      "balloon-1",
-      "balloon-2",
-      "balloon-3",
-    ];
-
+    "house-1",
+    "house-2",
+    "house-3",
+    "house-4",
+    "house-5",
+    "house-5-1",
+    "house-5-2",
+    "house-5-3",
+    "house-6",
+    "house-7",
+    "house-8",
+    "house-9",
+    "house-10",
+    "balloon-1",
+    "balloon-2",
+    "balloon-3",
+  ];
+  let annotationList = [
+    "annotation",
+    "annotation-2",
+    "annotation-3"
+  ]
 
   onMount(() => {
     image = document.getElementById("background-image");
 
-    elementClassList.forEach(function(id, index) {
+    elementClassList.forEach(function (id, index) {
       let element = document.getElementById(id);
 
-      if(index > 4){
-        var delay = (index-4) * 0.3;
-        element.style.transitionDelay = delay + 's';
+      if (index > 6) {
+        var delay = (index - 6) * 0.3;
+        element.style.transitionDelay = delay + "s";
       }
     });
   });
 
-  function setStyling(lastElement) {
+  function setStyling(lastElement, annotIndex=null) {
     let lastElementIndex = elementClassList.indexOf(lastElement);
 
-    for(let i=0; i<elementClassList.length; i++){
+    for (let i = 0; i < elementClassList.length; i++) {
       let element = document.getElementById(elementClassList[i]);
       let opacity = element.style.opacity;
 
-      if (i <= lastElementIndex){
+      if (i <= lastElementIndex) {
         if (opacity === "0") {
           element.style.opacity = "1";
         }
@@ -55,28 +61,39 @@
         }
       }
     }
+
+    if(annotIndex !== null){
+      for (let i = 0; i < annotationList.length; i++) {
+        let element = document.getElementById(annotationList[i]);
+        let opacity = element.style.opacity;
+        
+        console.log(annotIndex + " - " + i);
+
+        if (i === annotIndex && opacity === "0") {
+          element.style.opacity = "1";
+        }
+        else if (i !== annotIndex && opacity === "1") {
+          element.style.opacity = "0";
+        }
+      }
+    }
   }
 
   $: {
     if (step == 0) {
       image.style.filter = "brightness(1.0)";
       setStyling("null");
-    }
-    else if (step == 1) {
+    } else if (step == 1) {
       image.style.filter = "brightness(0.35)";
-      setStyling("annotation");
-    }
-    else if (step == 2) {
-      setStyling("house-2");
-    }
-    else if (step == 3) {
+      setStyling("house-1",0);
+    } else if (step == 2) {
+      setStyling("house-2",1);
+    } else if (step == 3) {
       setStyling("house-3");
-    }
-    else if (step == 4) {
-      setStyling("house-4");
-    }
-    else if (step >= 5) {
-      setStyling("balloon-3");
+    } else if (step == 4) {
+      setStyling("house-4",2);
+    } else if (step == 5) {
+      setStyling("balloon-3",-1);
     }
   }
 </script>
@@ -102,7 +119,7 @@
       d="M103.5 544.5V517.5H116H116.181L116.32 517.384L119.2 514.984L141.397 513.011L149.766 517.442L149.91 517.518L150.07 517.495L220.467 507.51L303.5 530.381V580V580.257L303.709 580.407L307 582.757V630.173L275.558 643.929L263.789 635.592L263.582 635.446L263.342 635.526L253.159 638.92L240.378 624.173L240.157 623.918L239.838 624.027L181.569 643.948L139.774 616.582L139.618 616.479L139.433 616.505L55 627.928V604.5V604.319L54.8841 604.18L45 592.319V556.908L103.1 544.99L103.5 544.908V544.5Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       style="opacity: 0"
@@ -110,7 +127,7 @@
       d="M390 495.5H396V516V516.379L396.365 516.481L408.5 519.879V554.452L365.045 550.502L364.8 550.48L364.633 550.661L358.835 556.941L349.494 554.533L306.5 529.214V480.452L360.366 475.016L389.715 495.411L389.843 495.5H390Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       style="opacity: 0"
@@ -118,7 +135,7 @@
       d="M274.833 485.373L275 485.224V485V449V444.908L296.547 440.501L356.5 441.492V456.25L352.7 459.1L352.5 459.25V459.5V475.547L306.951 480.002L306.5 480.047V480.5V521.944L284 519.55V506V505.744L283.793 505.595L274.793 499.095L274.693 499.022L274.571 499.005L261.635 497.157L274.833 485.373Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       style="opacity: 0"
@@ -126,7 +143,7 @@
       d="M246.109 442H282.404L274.814 445.036L274.5 445.161V445.5V484.788L259.771 499.026L238 501.929V479.5V479.21L237.748 479.066L234.5 477.21V447.321L246.109 442Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       style="opacity: 0"
@@ -134,7 +151,31 @@
       d="M206.791 463.593L206.695 463.525L206.58 463.506L188.5 460.575V446.396L205.028 442.507L233.5 445.943V462V477.5V477.794L233.757 477.937L238 480.294V508.371L232.5 507.102V503.5V503.228L232.272 503.081L214 491.228V469V468.743L213.791 468.593L206.791 463.593Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
+    />
+    <path
+      style="opacity: 0"
+      id="house-5-1"
+      d="M152.5 467.516V457.52L164.48 458L164.886 458.016L164.985 457.621L165.895 453.983L187.5 453.023V459.099L174.392 462.012L174.278 462.037L174.188 462.11L166.832 467.994L152.5 467.516Z"
+      fill="#D9D9D9"
+      fill-opacity="0.36"
+      stroke="#333"
+    />
+    <path
+      style="opacity: 0"
+      id="house-5-2"
+      d="M164.599 457.5H148.5V441H152V442.5V443H152.5H173H173.5V442.5V437H175V442.5V442.74L175.188 442.89L182.5 448.74V452.514L165.985 453L165.596 453.012L165.512 453.392L164.599 457.5Z"
+      fill="#D9D9D9"
+      fill-opacity="0.36"
+      stroke="#333"
+    />
+    <path
+      style="opacity: 0"
+      id="house-5-3"
+      d="M73.5 496.5V496.302L73.3646 496.158L67.5031 489.911L67.9925 458.976L87.525 457.999L87.525 457.999L87.5356 457.999L101.39 457.009L111.105 462.297V469.493L110.5 490.091L110.5 490.098V490.105V497.618L105.414 499.005L73.5 501.46V496.5Z"
+      fill="#D9D9D9"
+      fill-opacity="0.36"
+      stroke="#333"
     />
     <path
       style="opacity: 0"
@@ -142,7 +183,7 @@
       d="M110.5 437.071H120.5V445H112.5H112.272L112.122 445.173L105.772 452.5H96.5V436.762L100.225 432.571H106.755L110.105 436.878L110.255 437.071H110.5Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       style="opacity: 0"
@@ -150,7 +191,7 @@
       d="M88.782 429.5L94.6052 435.771L93.8419 436.026L93.5 436.14V436.5V450.448L89.0498 450.002L88.8427 449.982L88.6821 450.114L80.3206 457H72.1775L64.5 450.762V429.5H88.782Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       style="opacity: 0"
@@ -158,7 +199,7 @@
       d="M64 478V480H44.5V453.955L64.8458 452.017L66.9901 453.732L66.02 477.5H64.5H64V478Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       style="opacity: 0"
@@ -166,7 +207,7 @@
       d="M39 434.5H64V451.565L43.4332 454.435L42.9961 450.938L42.9388 450.48L42.4773 450.501L20.4773 451.501L20.251 451.511L20.1096 451.688L18.2597 454H0.5V438.743L7.30891 433.393L7.5 433.243V433V428.257L10.7906 425.907L11 425.757V425.5V423.5H33.3917L38.5 425.822V434V434.5H39Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       style="opacity: 0"
@@ -174,7 +215,7 @@
       d="M17.6788 460.52L20.5 467.103V480.5H0.5V467.264L9.66785 460.991L17.6788 460.52Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       id="balloon-1"
@@ -182,7 +223,7 @@
       d="M112.5 411.5H113H114.5V413H111.5V411.5H112.5ZM114.13 407.163L112.75 408.543L111.377 407.17L103.439 396.751L101.5 391.904V385.685L104.306 382.411L108.606 380.5H113H118.362L123.131 383.362L125 386.633V392.882L123.578 395.725L114.13 407.163Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       id="balloon-2"
@@ -190,7 +231,7 @@
       d="M15.3929 399.18L13.5192 395.901L13.9742 392.716L15.1271 391.384L17.6761 390.5H20.3469H23.5649L25.6827 391.89L27 393.207V395.867L26.0895 397.461L24.6351 399.157L20.9362 402.757L20.3068 403.248L19.4168 402.727L15.3929 399.18Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <path
       id="balloon-3"
@@ -198,7 +239,7 @@
       d="M41.6409 351.861L40.5176 349.803L40.7865 347.833L41.4387 347.044L42.938 346.5H44.5602H46.495L47.7432 347.357L48.5 348.15V349.771L47.9628 350.755L47.0757 351.839L44.7926 354.165L44.5187 354.388L44.1032 354.134L41.6409 351.861Z"
       fill="#D9D9D9"
       fill-opacity="0.36"
-      stroke="black"
+      stroke="#333"
     />
     <g style="opacity: 0" id="annotation">
       <path
@@ -215,6 +256,52 @@
         stroke="white"
       />
     </g>
+    <g  style="opacity: 0" id="annotation-2">
+      <text
+        id="Perimeter expanded"
+        fill="white"
+        xml:space="preserve"
+        style="white-space: pre"
+        font-family="Inter"
+        font-size="12"
+        font-weight="bold"
+        letter-spacing="0em"
+        ><tspan x="361" y="440.864">Perimeter &#10;</tspan><tspan
+          x="361"
+          y="451.864">expanded</tspan
+        ></text
+      >
+      <text
+        id="with no success"
+        fill="white"
+        xml:space="preserve"
+        style="white-space: pre"
+        font-family="Inter"
+        font-size="10"
+        letter-spacing="0em"
+        ><tspan x="369" y="463.636">with no </tspan><tspan x="369" y="473.636"
+          >success</tspan
+        ></text
+      >
+      <path id="Line 1_2" d="M365.5 457V478" stroke="white" />
+    </g>
+    <g  style="opacity: 0" id="annotation-3">
+      <text
+        id="Tip received"
+        fill="white"
+        xml:space="preserve"
+        style="white-space: pre"
+        font-family="Inter"
+        font-size="12"
+        font-weight="bold"
+        letter-spacing="0em"
+        ><tspan x="223.121" y="428.864">Tip </tspan><tspan
+          x="191.117"
+          y="439.864">received</tspan
+        ></text
+      >
+      <path id="Line 2" d="M245 425L245 444" stroke="white" />
+    </g>
   </g>
   <defs>
     <pattern
@@ -225,17 +312,16 @@
     >
       <use xlink:href="#image0_1_8" transform="scale(0.0015625 0.00104167)" />
     </pattern>
-    <Image></Image>
+    <Image />
   </defs>
 </svg>
 
-
 <style>
-  #image path{
+  #image path {
     transition: opacity 0.3s ease-in 0.5s;
   }
 
-  #annotation{
+  #annotation, #annotation-2, #annotation-3  {
     transition: opacity 0.3s ease-in 0.6s;
   }
 </style>
